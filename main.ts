@@ -20,7 +20,7 @@ namespace SpriteKind {
     export const PlayerThatCaught = SpriteKind.create()
     export const TabsMenuKind = SpriteKind.create()
 }
-function start_screen() {
+function start_screen () {
     // Arizona Cardinals
     // Atlanta Falcons
     // Baltimore Ravens
@@ -54,75 +54,75 @@ function start_screen() {
     // Tennessee Titans
     // Washington Commanders
     championships = [
-        0,
-        0,
-        2,
-        0,
-        0,
-        1,
-        0,
-        0,
-        5,
-        3,
-        0,
-        4,
-        0,
-        2,
-        0,
-        3,
-        3,
-        0,
-        2,
-        2,
-        0,
-        6,
-        1,
-        4,
-        1,
-        2,
-        6,
-        5,
-        1,
-        2,
-        0,
-        3
+    0,
+    0,
+    2,
+    0,
+    0,
+    1,
+    0,
+    0,
+    5,
+    3,
+    0,
+    4,
+    0,
+    2,
+    0,
+    3,
+    3,
+    0,
+    2,
+    2,
+    0,
+    6,
+    1,
+    4,
+    1,
+    2,
+    6,
+    5,
+    1,
+    2,
+    0,
+    3
     ]
     schedule = []
     scheduleMenuItems = []
     if (!(blockSettings.exists("schedule"))) {
         myMenu = miniMenu.createMenuFromArray([
-            miniMenu.createMenuItem("Arizona"),
-            miniMenu.createMenuItem("Atlanta"),
-            miniMenu.createMenuItem("Baltimore"),
-            miniMenu.createMenuItem("Buffalo"),
-            miniMenu.createMenuItem("Carolina"),
-            miniMenu.createMenuItem("Chicago"),
-            miniMenu.createMenuItem("Cincinnati"),
-            miniMenu.createMenuItem("Cleveland"),
-            miniMenu.createMenuItem("Dallas"),
-            miniMenu.createMenuItem("Denver"),
-            miniMenu.createMenuItem("Detroit"),
-            miniMenu.createMenuItem("Green Bay"),
-            miniMenu.createMenuItem("Houston"),
-            miniMenu.createMenuItem("Indianapolis"),
-            miniMenu.createMenuItem("Jacksonville"),
-            miniMenu.createMenuItem("Kansas City"),
-            miniMenu.createMenuItem("Las Vegas"),
-            miniMenu.createMenuItem("Los Angeles C"),
-            miniMenu.createMenuItem("Los Angeles R"),
-            miniMenu.createMenuItem("Miami"),
-            miniMenu.createMenuItem("Minnesota"),
-            miniMenu.createMenuItem("New England"),
-            miniMenu.createMenuItem("New Orleans"),
-            miniMenu.createMenuItem("New York G"),
-            miniMenu.createMenuItem("New York J"),
-            miniMenu.createMenuItem("Philadelphia"),
-            miniMenu.createMenuItem("Pittsburgh"),
-            miniMenu.createMenuItem("San Francisco"),
-            miniMenu.createMenuItem("Seattle"),
-            miniMenu.createMenuItem("Tampa Bay"),
-            miniMenu.createMenuItem("Tennessee"),
-            miniMenu.createMenuItem("Washington")
+        miniMenu.createMenuItem("Arizona"),
+        miniMenu.createMenuItem("Atlanta"),
+        miniMenu.createMenuItem("Baltimore"),
+        miniMenu.createMenuItem("Buffalo"),
+        miniMenu.createMenuItem("Carolina"),
+        miniMenu.createMenuItem("Chicago"),
+        miniMenu.createMenuItem("Cincinnati"),
+        miniMenu.createMenuItem("Cleveland"),
+        miniMenu.createMenuItem("Dallas"),
+        miniMenu.createMenuItem("Denver"),
+        miniMenu.createMenuItem("Detroit"),
+        miniMenu.createMenuItem("Green Bay"),
+        miniMenu.createMenuItem("Houston"),
+        miniMenu.createMenuItem("Indianapolis"),
+        miniMenu.createMenuItem("Jacksonville"),
+        miniMenu.createMenuItem("Kansas City"),
+        miniMenu.createMenuItem("Las Vegas"),
+        miniMenu.createMenuItem("Los Angeles C"),
+        miniMenu.createMenuItem("Los Angeles R"),
+        miniMenu.createMenuItem("Miami"),
+        miniMenu.createMenuItem("Minnesota"),
+        miniMenu.createMenuItem("New England"),
+        miniMenu.createMenuItem("New Orleans"),
+        miniMenu.createMenuItem("New York G"),
+        miniMenu.createMenuItem("New York J"),
+        miniMenu.createMenuItem("Philadelphia"),
+        miniMenu.createMenuItem("Pittsburgh"),
+        miniMenu.createMenuItem("San Francisco"),
+        miniMenu.createMenuItem("Seattle"),
+        miniMenu.createMenuItem("Tampa Bay"),
+        miniMenu.createMenuItem("Tennessee"),
+        miniMenu.createMenuItem("Washington")
         ])
         myMenu.setDimensions(80, 100)
         myMenu.setTitle("TEAM SELECT")
@@ -293,7 +293,7 @@ function start_screen() {
             TeamSelectName.setText(Teams.getTeamProperty(selectedIndex, Teams.TeamProperty.TeamAbbreviation) as string)
             teamselectSpritePlayer.setImage(assets.image`myImage3`)
             star_ratings.setImage([
-                img`
+            img`
                 . . . . . . . . . . . . . . . . 
                 . . . . . . . . . . . . . . . . 
                 . . . . . . . . . . . . . . . . 
@@ -311,11 +311,11 @@ function start_screen() {
                 . . . . . . . . . . . . . . . . 
                 . . . . . . . . . . . . . . . . 
                 `,
-                assets.image`one_star`,
-                assets.image`two_stars`,
-                assets.image`three_stars`,
-                assets.image`four_stars`,
-                assets.image`five_stars`
+            assets.image`one_star`,
+            assets.image`two_stars`,
+            assets.image`three_stars`,
+            assets.image`four_stars`,
+            assets.image`five_stars`
             ][Teams.getTeamProperty(selectedIndex, Teams.TeamProperty.Rating) as number])
             if (Teams.containsColors(teamselectSpritePlayer.image)) {
                 teamselectSpritePlayer.image.replace(9, Teams.getTeamProperty(selectedIndex, Teams.TeamProperty.MainColor) as number)
@@ -466,7 +466,7 @@ function start_screen() {
             } else if (championships[selectedIndex] >= 4) {
                 welcomeDialog = "This organization demands success, we expect your best coach, no less..."
             }
-            welcomeToTeamText = fancyText.create("" + "" + "" + "" + "" + "" + "Welcome to " + Teams.getTeamProperty(selectedIndex, Teams.TeamProperty.TeamLocation) as string + " coach. " + welcomeDialog)
+            welcomeToTeamText = fancyText.create("" + "" + "" + "" + "" + "" + "" + "Welcome to " + Teams.getTeamProperty(selectedIndex, Teams.TeamProperty.TeamLocation) as string + " coach. " + welcomeDialog)
             fancyText.setMaxWidth(welcomeToTeamText, 140)
             welcomeToTeamText.setPosition(85, 40)
             trophyShelf = sprites.create(assets.image`bookshelf`, SpriteKind.UI)
@@ -559,19 +559,19 @@ function start_screen() {
                 scheduleMenu.setStyleProperty(miniMenu.StyleKind.Selected, miniMenu.StyleProperty.Foreground, Teams.getTeamProperty(parseFloat(schedule[selectedIndex].split("/")[0]), Teams.TeamProperty.SecondaryColor) as number)
             })
             tabsMenu = miniMenu.createMenuFromArray([miniMenu.createMenuItem("Schedule"), miniMenu.createMenuItem("League"), miniMenu.createMenuItem("", img`
-            . . . . . . . . . . . . 
-            . . . . . . . . . . . . 
-            . . . . . . . . . . . . 
-            . . . . . . . . . . . . 
-            . . . . . . . c c c c c 
-            . . . . . . . . . . . . 
-            . . . . . . . c c c c c 
-            . . . . . . . . . . . . 
-            . . . . . . . c c c c c 
-            . . . . . . . . . . . . 
-            . . . . . . . . . . . . 
-            . . . . . . . . . . . . 
-            `)])
+                . . . . . . . . . . . . 
+                . . . . . . . . . . . . 
+                . . . . . . . . . . . . 
+                . . . . . . . . . . . . 
+                . . . . . . . c c c c c 
+                . . . . . . . . . . . . 
+                . . . . . . . c c c c c 
+                . . . . . . . . . . . . 
+                . . . . . . . c c c c c 
+                . . . . . . . . . . . . 
+                . . . . . . . . . . . . 
+                . . . . . . . . . . . . 
+                `)])
             tabsMenu.setKind(SpriteKind.TabsMenuKind)
             tabsMenu.setButtonEventsEnabled(false)
             tabsMenu.setMenuStyleProperty(miniMenu.MenuStyleProperty.Rows, 1)
@@ -593,7 +593,7 @@ function start_screen() {
                         homeTeamEnum2 = Teams.getTeamFromEnum(parseFloat(schedule[selectedIndex].split("/")[0]));
                     } else {
                         awayTeamEnum2 = Teams.getTeamFromEnum(parseFloat(schedule[selectedIndex].split("/")[0]));
-                        homeTeamEnum2 = CurrentTeam
+homeTeamEnum2 = CurrentTeam
                     }
                     fancyText.setText(recordText, "")
                     spriteutils.moveTo(scheduleMenu, spriteutils.pos(80, 160), 200, true)
@@ -724,7 +724,6 @@ function start_screen() {
         fancyText.setText(recordText, "" + Teams.getTeamProperty(CurrentTeam, Teams.TeamProperty.TeamAbbreviation) + ": " + ("(" + blockSettings.readNumberArray("record")[0] + "-" + blockSettings.readNumberArray("record")[1] + "-" + blockSettings.readNumberArray("record")[2] + ")"))
         recordText.setPosition(80, 5)
         CameraX = 80
-
         newParallaxBackground = img`
             ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
             ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
@@ -916,7 +915,7 @@ function start_screen() {
                     homeTeamEnum2 = Teams.getTeamFromEnum(parseFloat(schedule[selectedIndex].split("/")[0]));
                 } else {
                     awayTeamEnum2 = Teams.getTeamFromEnum(parseFloat(schedule[selectedIndex].split("/")[0]));
-                    homeTeamEnum2 = CurrentTeam
+homeTeamEnum2 = CurrentTeam
                 }
                 fancyText.setText(recordText, "")
                 spriteutils.moveTo(scheduleMenu, spriteutils.pos(80, 160), 200, true)
@@ -1017,10 +1016,10 @@ modes.whenModeChanged("preSnap", function (value) {
     enableRecieverMovement = false
     CameraX = _qb.x - 30
     fancyText.setText(Downs, "" + [
-        "1st",
-        "2nd",
-        "3rd",
-        "4th"
+    "1st",
+    "2nd",
+    "3rd",
+    "4th"
     ][CurrentDown - 1] + " & " + (Math.round(CurrentDownYardage) !== 0 ? Math.round(CurrentDownYardage) : "In."))
     inGameAlert("MENU to Change Play")
     music.play(music.createSoundEffect(WaveShape.Sawtooth, 298, 1, 186, 255, 10, SoundExpressionEffect.Warble, InterpolationCurve.Linear), music.PlaybackMode.InBackground)
@@ -1030,7 +1029,7 @@ modes.whenModeChanged("preSnap", function (value) {
         })
     }
 })
-function endPlay(touchdown: boolean) {
+function endPlay (touchdown: boolean) {
     if (!(endingplay)) {
         console.log("Ending play is false, setting it to true.")
         endingplay = true
@@ -1056,10 +1055,10 @@ function endPlay(touchdown: boolean) {
                 value3.follow(null)
                 animation.stopAnimation(animation.AnimationTypes.All, value3)
                 animation.runImageAnimation(
-                    value3,
-                    assets.animation`myAnim1`,
-                    500,
-                    true
+                value3,
+                assets.animation`myAnim1`,
+                500,
+                true
                 )
             }
             for (let value4 of sprites.allOfKind(SpriteKind.Defense)) {
@@ -1071,10 +1070,10 @@ function endPlay(touchdown: boolean) {
                 _reciever.setVelocity(0, 0)
                 animation.stopAnimation(animation.AnimationTypes.All, _reciever)
                 animation.runImageAnimation(
-                    _reciever,
-                    assets.animation`myAnim1`,
-                    500,
-                    true
+                _reciever,
+                assets.animation`myAnim1`,
+                500,
+                true
                 )
             })
             pause(1000)
@@ -1138,7 +1137,7 @@ function endPlay(touchdown: boolean) {
         endingplay = false
     }
 }
-function generate_DLine() {
+function generate_DLine () {
     playerInt = 0
     // Spawn D-Lineman
     for (let index2 = 0; index2 <= 4; index2++) {
@@ -1183,10 +1182,10 @@ controller.up.onEvent(ControllerButtonEvent.Pressed, function () {
                     console.log("Pass completed")
                     music.play(music.createSoundEffect(WaveShape.Sawtooth, 1, 239, 186, 255, 10, SoundExpressionEffect.Warble, InterpolationCurve.Linear), music.PlaybackMode.InBackground)
                     animation.runImageAnimation(
-                        _reciever,
-                        assets.animation`myAnim`,
-                        200,
-                        true
+                    _reciever,
+                    assets.animation`myAnim`,
+                    200,
+                    true
                     )
                 })
             } else {
@@ -1213,7 +1212,7 @@ modes.whenModeChanged("sack", function (value) {
         endPlay(false)
     })
 })
-function end_possession(kickoff_return: boolean) {
+function end_possession (kickoff_return: boolean) {
     modes.addMode("defense")
     modes.setMode("defense", kickoff_return)
     console.log("End of possession")
@@ -1295,10 +1294,10 @@ sprites.onOverlap(SpriteKind.Ball, SpriteKind.Defense, function (sprite, otherSp
                             })
                             intercepted = true
                             animation.runImageAnimation(
-                                otherSprite,
-                                assets.animation`myAnim2`,
-                                200,
-                                true
+                            otherSprite,
+                            assets.animation`myAnim2`,
+                            200,
+                            true
                             )
                             otherSprite.follow(null)
                             otherSprite.setVelocity(20, 0)
@@ -1318,7 +1317,7 @@ sprites.onOverlap(SpriteKind.Ball, SpriteKind.Defense, function (sprite, otherSp
         }
     }
 })
-function throw_ball_fromto(passer: Sprite, reciever: Sprite) {
+function throw_ball_fromto (passer: Sprite, reciever: Sprite) {
     _reciever = reciever
     reciever.setKind(SpriteKind.PlayerThatCaught)
     _ball = sprites.create(img`
@@ -1330,16 +1329,16 @@ function throw_ball_fromto(passer: Sprite, reciever: Sprite) {
         . c . 
         `, SpriteKind.Misc)
     animation.runImageAnimation(
-        _ball,
-        [img`
+    _ball,
+    [img`
         e 1 e 
         c c c 
-        `, img`
+        `,img`
         e e e 
         c 1 c 
         `],
-        75,
-        true
+    75,
+    true
     )
     _ball.setPosition(passer.x, passer.y)
     ballShadow.setPosition(passer.x, passer.y)
@@ -1438,14 +1437,14 @@ controller.B.onEvent(ControllerButtonEvent.Pressed, function () {
         }
     }
 })
-function subtractTime(minutes: number, seconds: number, subtractSeconds: number) {
+function subtractTime (minutes: number, seconds: number, subtractSeconds: number) {
     totalSeconds = minutes * 60 + seconds - subtractSeconds
     if (totalSeconds < 0) {
         totalSeconds = 0
     }
     return [Math.floor(totalSeconds / 60), totalSeconds % 60]
 }
-function playerPopUp(text: string, sprite: Sprite) {
+function playerPopUp (text: string, sprite: Sprite) {
     sprites.destroyAllSpritesOfKind(SpriteKind.Player)
     popup = fancyText.create(text, 0, 15, fancyText.smallArcade)
     popup.setKind(SpriteKind.Player)
@@ -1460,8 +1459,7 @@ function playerPopUp(text: string, sprite: Sprite) {
         }
     })
 }
-function openLeagueMenu() {
-
+function openLeagueMenu () {
     function openStandingsMenu() {
         //blockSettings.remove("standings")
 
@@ -1535,11 +1533,11 @@ function openLeagueMenu() {
             }
         })
     }
-    function openFAMenu() {
+function openFAMenu() {
         // Resets the league menu options and title and houses the code for the free agents menu
 
     }
-    if (spriteutils.isDestroyed(leagueMenu) || !(leagueMenu)) {
+if (spriteutils.isDestroyed(leagueMenu) || !(leagueMenu)) {
         leagueMenu = miniMenu.createMenuFromArray([miniMenu.createMenuItem("Standings", assets.image`standingsIcon`), miniMenu.createMenuItem("Free Agents", assets.image`faIcon`)])
         leagueMenu.setDimensions(140, 100)
         leagueMenu.setFrame(img`
@@ -1579,12 +1577,12 @@ sprites.onOverlap(SpriteKind.Player, SpriteKind.Endzone, function (sprite, other
         sprite.setImage(flip(assets.image`myImage10`))
     })
 })
-function flip(myImage: Image) {
+function flip (myImage: Image) {
     img2 = myImage
     myImage.flipX()
     return myImage
 }
-function set_splash_to(text: string, bool: boolean, cameraX: number) {
+function set_splash_to (text: string, bool: boolean, cameraX: number) {
     pauseUntil(() => !(controller.anyButton.isPressed()))
     CameraX = cameraX
     gameSplash = fancyText.create(text)
@@ -1602,7 +1600,7 @@ function set_splash_to(text: string, bool: boolean, cameraX: number) {
     timer.background(function () {
         for (let index = 0; index < 10; index++) {
             gameSplash.y -= 1
-            pause(1)
+pause(1)
         }
         for (let index = 0; index < 10; index++) {
             gameSplash.y += 1
@@ -1620,15 +1618,15 @@ controller.A.onEvent(ControllerButtonEvent.Pressed, function () {
         }
     }
 })
-function x_to_yards(x: number) {
+function x_to_yards (x: number) {
     return Math.floor((x + 79) * 0.31578947368)
 }
-function set_defensive_colors() {
+function set_defensive_colors () {
     for (let value152 of sprites.allOfKind(SpriteKind.Defense)) {
         let mainColor = Teams.getTeamProperty(opponentTeam, Teams.TeamProperty.MainColor) as number
-        let secondaryColor = Teams.getTeamProperty(opponentTeam, Teams.TeamProperty.SecondaryColor) as number
-        let sockColor = Teams.getTeamProperty(opponentTeam, Teams.TeamProperty.SockColor) as number
-        if (typeof mainColor == "number") {
+let secondaryColor = Teams.getTeamProperty(opponentTeam, Teams.TeamProperty.SecondaryColor) as number
+let sockColor = Teams.getTeamProperty(opponentTeam, Teams.TeamProperty.SockColor) as number
+if (typeof mainColor == "number") {
             if (Teams.containsColors(value152.image)) {
                 value152.image.replace(9, mainColor)
                 value152.image.replace(3, secondaryColor)
@@ -1638,9 +1636,9 @@ function set_defensive_colors() {
     }
     for (let value1522 of sprites.allOfKind(SpriteKind.DefenderTackling)) {
         let mainColor2 = Teams.getTeamProperty(opponentTeam, Teams.TeamProperty.MainColor) as number
-        let secondaryColor2 = Teams.getTeamProperty(opponentTeam, Teams.TeamProperty.SecondaryColor) as number
-        let sockColor2 = Teams.getTeamProperty(opponentTeam, Teams.TeamProperty.SockColor) as number
-        if (typeof mainColor2 == "number") {
+let secondaryColor2 = Teams.getTeamProperty(opponentTeam, Teams.TeamProperty.SecondaryColor) as number
+let sockColor2 = Teams.getTeamProperty(opponentTeam, Teams.TeamProperty.SockColor) as number
+if (typeof mainColor2 == "number") {
             if (Teams.containsColors(value1522.image)) {
                 value1522.image.replace(9, mainColor2)
                 value1522.image.replace(3, secondaryColor2)
@@ -1650,9 +1648,9 @@ function set_defensive_colors() {
     }
     for (let value153 of sprites.allOfKind(SpriteKind.DefenderThatTackled)) {
         let mainColor3 = Teams.getTeamProperty(opponentTeam, Teams.TeamProperty.MainColor) as number
-        let secondaryColor3 = Teams.getTeamProperty(opponentTeam, Teams.TeamProperty.SecondaryColor) as number
-        let sockColor3 = Teams.getTeamProperty(opponentTeam, Teams.TeamProperty.SockColor) as number
-        if (typeof mainColor3 == "number") {
+let secondaryColor3 = Teams.getTeamProperty(opponentTeam, Teams.TeamProperty.SecondaryColor) as number
+let sockColor3 = Teams.getTeamProperty(opponentTeam, Teams.TeamProperty.SockColor) as number
+if (typeof mainColor3 == "number") {
             if (Teams.containsColors(value153.image)) {
                 value153.image.replace(9, mainColor3)
                 value153.image.replace(3, secondaryColor3)
@@ -1662,9 +1660,9 @@ function set_defensive_colors() {
     }
     for (let value1532 of sprites.allOfKind(SpriteKind.Interceptor)) {
         let mainColor32 = Teams.getTeamProperty(opponentTeam, Teams.TeamProperty.MainColor) as number
-        let secondaryColor32 = Teams.getTeamProperty(opponentTeam, Teams.TeamProperty.SecondaryColor) as number
-        let sockColor32 = Teams.getTeamProperty(opponentTeam, Teams.TeamProperty.SockColor) as number
-        if (typeof mainColor32 == "number") {
+let secondaryColor32 = Teams.getTeamProperty(opponentTeam, Teams.TeamProperty.SecondaryColor) as number
+let sockColor32 = Teams.getTeamProperty(opponentTeam, Teams.TeamProperty.SockColor) as number
+if (typeof mainColor32 == "number") {
             if (Teams.containsColors(value1532.image)) {
                 value1532.image.replace(9, mainColor32)
                 value1532.image.replace(3, secondaryColor32)
@@ -1674,12 +1672,12 @@ function set_defensive_colors() {
     }
 }
 // Adjust this value to control the lerp speed
-function lerpCameraX(targetX: number) {
+function lerpCameraX (targetX: number) {
     // Calculate the new camera X position based on lerpSpeed
     scene.centerCameraAt(scene.cameraProperty(CameraProperty.X) + (targetX - scene.cameraProperty(CameraProperty.X)) * lerpSpeed, 60)
 }
 // Helper function to generate random yardage within a range
-function randomYardage(min: number, max: number) {
+function randomYardage (min: number, max: number) {
     return Math.floor(Math.random() * (max - min + 1)) + min
 }
 controller.left.onEvent(ControllerButtonEvent.Pressed, function () {
@@ -1687,7 +1685,7 @@ controller.left.onEvent(ControllerButtonEvent.Pressed, function () {
         if (_reciever) {
             if (recieverHasPossesion) {
                 if (enableRecieverMovement) {
-
+                	
                 }
             }
         } else {
@@ -1698,10 +1696,10 @@ controller.left.onEvent(ControllerButtonEvent.Pressed, function () {
                     pauseUntil(() => enableRecieverMovement)
                     music.play(music.createSoundEffect(WaveShape.Sawtooth, 1, 239, 186, 255, 10, SoundExpressionEffect.Warble, InterpolationCurve.Linear), music.PlaybackMode.InBackground)
                     animation.runImageAnimation(
-                        _reciever,
-                        assets.animation`myAnim`,
-                        200,
-                        true
+                    _reciever,
+                    assets.animation`myAnim`,
+                    200,
+                    true
                     )
                 })
             }
@@ -1718,10 +1716,10 @@ sprites.onOverlap(SpriteKind.PlayerWithPossession, SpriteKind.DefenderTackling, 
             enableRecieverMovement = false
             animation.stopAnimation(animation.AnimationTypes.All, sprite)
             animation.runImageAnimation(
-                sprite,
-                assets.animation`dive1`,
-                300,
-                false
+            sprite,
+            assets.animation`dive1`,
+            300,
+            false
             )
             sprite.setVelocity(0, 0)
             sprites.setDataNumber(sprite, "velocity", 0)
@@ -1734,7 +1732,7 @@ sprites.onOverlap(SpriteKind.PlayerWithPossession, SpriteKind.DefenderTackling, 
         }
     })
 })
-function easeSpriteToTarget(sprite: Sprite, target: Sprite) {
+function easeSpriteToTarget (sprite: Sprite, target: Sprite) {
     dx = target.x - sprite.x
     dy = target.y - sprite.y
     angle = Math.atan2(dy, dx)
@@ -1755,13 +1753,13 @@ controller.right.onEvent(ControllerButtonEvent.Released, function () {
     }
 })
 // Simulate a single play
-function simulatePlay() {
+function simulatePlay () {
     // Skip if possession already ended
     if (possessionEnded) {
         return ""
     }
     const randomAction = Math.random();
-    if (willScore) {
+if (willScore) {
         // Guaranteed to score
         if (!(passCompleted)) {
             yardage = randomYardage(30, 50)
@@ -1831,16 +1829,16 @@ function simulatePlay() {
         }
     }
 }
-function yards_to_x(yards: number) {
+function yards_to_x (yards: number) {
     return Math.ceil(yards / 0.31578947368 - 79)
 }
-function draw_lines_at(scrimmagex: number, firstdownx: number) {
+function draw_lines_at (scrimmagex: number, firstdownx: number) {
     OriginalField = assets.image`gridiron`
     _field.setImage(OriginalField)
     _field.image.drawLine(scrimmagex + 79, 0, scrimmagex + 79, 99, 8)
     _field.image.drawLine(firstdownx + 79, 0, firstdownx + 79, 99, 5)
 }
-function start_game(awayTeam: number, homeTeam: number) {
+function start_game (awayTeam: number, homeTeam: number) {
     sprites.destroy(tabsMenu)
     sprites.destroy(awayTeamTextSprite)
     sprites.destroy(homeTeamTextSprite)
@@ -2168,10 +2166,10 @@ controller.right.onEvent(ControllerButtonEvent.Pressed, function () {
                     pauseUntil(() => enableRecieverMovement)
                     music.play(music.createSoundEffect(WaveShape.Sawtooth, 1, 239, 186, 255, 10, SoundExpressionEffect.Warble, InterpolationCurve.Linear), music.PlaybackMode.InBackground)
                     animation.runImageAnimation(
-                        _reciever,
-                        assets.animation`myAnim`,
-                        200,
-                        true
+                    _reciever,
+                    assets.animation`myAnim`,
+                    200,
+                    true
                     )
                 })
             }
@@ -2213,38 +2211,38 @@ modes.whenModeChanged("onPlay", function (value) {
         rightInd.setPosition(tight_end.x, tight_end.y)
         sprites.setDataSprite(tight_end, "ind", rightInd)
         animation.runImageAnimation(
-            wr1,
-            assets.animation`myAnim0`,
-            200,
-            true
+        wr1,
+        assets.animation`myAnim0`,
+        200,
+        true
         )
         animation.runImageAnimation(
-            wr2,
-            assets.animation`myAnim0`,
-            200,
-            true
+        wr2,
+        assets.animation`myAnim0`,
+        200,
+        true
         )
         animation.runImageAnimation(
-            cb1,
-            assets.animation`myAnim4`,
-            200,
-            true
+        cb1,
+        assets.animation`myAnim4`,
+        200,
+        true
         )
         animation.runImageAnimation(
-            cb2,
-            assets.animation`myAnim4`,
-            200,
-            true
+        cb2,
+        assets.animation`myAnim4`,
+        200,
+        true
         )
         for (let sprite of sprites.allOfKind(SpriteKind.Defense)) {
             for (let value9 of sprites.allOfKind(SpriteKind.Player)) {
                 if (sprites.readDataNumber(value9, "num") == sprites.readDataNumber(sprite, "num")) {
                     if (sprites.readDataNumber(sprite, "num") <= 4) {
                         animation.runImageAnimation(
-                            sprite,
-                            assets.animation`myAnim3`,
-                            200,
-                            true
+                        sprite,
+                        assets.animation`myAnim3`,
+                        200,
+                        true
                         )
                         sackSpeed = 1 + (Teams.getTeamProperty(CurrentTeam, Teams.TeamProperty.Rating) as number - 1) * 1.5 / 4
                         sprite.follow(_qb, 10 / randint(sackSpeed, sackSpeed + 0.5))
@@ -2276,7 +2274,7 @@ modes.whenModeChanged("onPlay", function (value) {
         })
     }
 })
-function secondsToMs(seconds: number) {
+function secondsToMs (seconds: number) {
     if (seconds >= 0) {
         minutes = Math.floor(seconds / 60)
         remainingSeconds = seconds % 60
@@ -2285,7 +2283,7 @@ function secondsToMs(seconds: number) {
         return "0:00"
     }
 }
-function call_play(playNumber: number) {
+function call_play (playNumber: number) {
     if (playNumber == 0) {
         run_route([[0, 1.2], [1550, 0]], running_back)
         run_route([[0, 0], [1925, -0.5]], wr1)
@@ -2297,7 +2295,7 @@ function call_play(playNumber: number) {
         run_route([[300, 99]], tight_end)
     }
 }
-function inGameAlert(text: string) {
+function inGameAlert (text: string) {
     fancyText.setText(ContextText, text)
     sprites.destroyAllSpritesOfKind(SpriteKind.alertGlare)
     alertTextGlare = sprites.create(assets.image`myImage16`, SpriteKind.alertGlare)
@@ -2329,10 +2327,10 @@ controller.down.onEvent(ControllerButtonEvent.Pressed, function () {
                     pauseUntil(() => enableRecieverMovement)
                     music.play(music.createSoundEffect(WaveShape.Sawtooth, 1, 239, 186, 255, 10, SoundExpressionEffect.Warble, InterpolationCurve.Linear), music.PlaybackMode.InBackground)
                     animation.runImageAnimation(
-                        _reciever,
-                        assets.animation`myAnim`,
-                        200,
-                        true
+                    _reciever,
+                    assets.animation`myAnim`,
+                    200,
+                    true
                     )
                 })
             }
@@ -2347,12 +2345,12 @@ controller.down.onEvent(ControllerButtonEvent.Pressed, function () {
         }
     }
 })
-function set_offensive_colors() {
+function set_offensive_colors () {
     for (let value22 of sprites.allOfKind(SpriteKind.Player)) {
         let mainColor22 = Teams.getTeamProperty(CurrentTeam, Teams.TeamProperty.MainColor) as number
-        let secondaryColor22 = Teams.getTeamProperty(CurrentTeam, Teams.TeamProperty.SecondaryColor) as number
-        let sockColor22 = Teams.getTeamProperty(CurrentTeam, Teams.TeamProperty.SockColor) as number
-        if (typeof mainColor22 == "number") {
+let secondaryColor22 = Teams.getTeamProperty(CurrentTeam, Teams.TeamProperty.SecondaryColor) as number
+let sockColor22 = Teams.getTeamProperty(CurrentTeam, Teams.TeamProperty.SockColor) as number
+if (typeof mainColor22 == "number") {
             if (Teams.containsColors(value22.image)) {
                 value22.image.replace(9, mainColor22)
                 value22.image.replace(3, secondaryColor22)
@@ -2362,9 +2360,9 @@ function set_offensive_colors() {
     }
     for (let value222 of sprites.allOfKind(SpriteKind.PlayerWithPossession)) {
         let mainColor23 = Teams.getTeamProperty(CurrentTeam, Teams.TeamProperty.MainColor) as number
-        let secondaryColor23 = Teams.getTeamProperty(CurrentTeam, Teams.TeamProperty.SecondaryColor) as number
-        let sockColor23 = Teams.getTeamProperty(CurrentTeam, Teams.TeamProperty.SockColor) as number
-        if (typeof mainColor23 == "number") {
+let secondaryColor23 = Teams.getTeamProperty(CurrentTeam, Teams.TeamProperty.SecondaryColor) as number
+let sockColor23 = Teams.getTeamProperty(CurrentTeam, Teams.TeamProperty.SockColor) as number
+if (typeof mainColor23 == "number") {
             if (Teams.containsColors(value222.image)) {
                 value222.image.replace(9, mainColor23)
                 value222.image.replace(3, secondaryColor23)
@@ -2374,9 +2372,9 @@ function set_offensive_colors() {
     }
     for (let value223 of sprites.allOfKind(SpriteKind.PlayerInEndzone)) {
         let mainColor24 = Teams.getTeamProperty(CurrentTeam, Teams.TeamProperty.MainColor) as number
-        let secondaryColor24 = Teams.getTeamProperty(CurrentTeam, Teams.TeamProperty.SecondaryColor) as number
-        let sockColor24 = Teams.getTeamProperty(CurrentTeam, Teams.TeamProperty.SockColor) as number
-        if (typeof mainColor24 == "number") {
+let secondaryColor24 = Teams.getTeamProperty(CurrentTeam, Teams.TeamProperty.SecondaryColor) as number
+let sockColor24 = Teams.getTeamProperty(CurrentTeam, Teams.TeamProperty.SockColor) as number
+if (typeof mainColor24 == "number") {
             if (Teams.containsColors(value223.image)) {
                 value223.image.replace(9, mainColor24)
                 value223.image.replace(3, secondaryColor24)
@@ -2386,9 +2384,9 @@ function set_offensive_colors() {
     }
     for (let value224 of sprites.allOfKind(SpriteKind.NonPlayerPlayers)) {
         let mainColor25 = Teams.getTeamProperty(CurrentTeam, Teams.TeamProperty.MainColor) as number
-        let secondaryColor25 = Teams.getTeamProperty(CurrentTeam, Teams.TeamProperty.SecondaryColor) as number
-        let sockColor25 = Teams.getTeamProperty(CurrentTeam, Teams.TeamProperty.SockColor) as number
-        if (typeof mainColor25 == "number") {
+let secondaryColor25 = Teams.getTeamProperty(CurrentTeam, Teams.TeamProperty.SecondaryColor) as number
+let sockColor25 = Teams.getTeamProperty(CurrentTeam, Teams.TeamProperty.SockColor) as number
+if (typeof mainColor25 == "number") {
             if (Teams.containsColors(value224.image)) {
                 value224.image.replace(9, mainColor25)
                 value224.image.replace(3, secondaryColor25)
@@ -2398,7 +2396,7 @@ function set_offensive_colors() {
     }
 }
 modes.whenModeChanged("defense", function (value) {
-
+	
 })
 spriteutils.onSpriteKindUpdateInterval(SpriteKind.Defense, 100, function (sprite) {
     if (modes.getCurrentMode() == "onPlay") {
@@ -2408,10 +2406,10 @@ spriteutils.onSpriteKindUpdateInterval(SpriteKind.Defense, 100, function (sprite
                     music.play(music.createSoundEffect(WaveShape.Noise, 1, 198, 71, 255, 100, SoundExpressionEffect.Warble, InterpolationCurve.Linear), music.PlaybackMode.InBackground)
                     sprite.setKind(SpriteKind.DefenderTackling)
                     animation.runImageAnimation(
-                        sprite,
-                        assets.animation`dive0`,
-                        100,
-                        false
+                    sprite,
+                    assets.animation`dive0`,
+                    100,
+                    false
                     )
                     timer.after(400, function () {
                         sprite.follow(_reciever, 0)
@@ -2424,10 +2422,10 @@ spriteutils.onSpriteKindUpdateInterval(SpriteKind.Defense, 100, function (sprite
                     music.play(music.createSoundEffect(WaveShape.Noise, 1, 198, 71, 255, 100, SoundExpressionEffect.Warble, InterpolationCurve.Linear), music.PlaybackMode.InBackground)
                     sprite.setKind(SpriteKind.DefenderTackling)
                     animation.runImageAnimation(
-                        sprite,
-                        assets.animation`dive2`,
-                        100,
-                        false
+                    sprite,
+                    assets.animation`dive2`,
+                    100,
+                    false
                     )
                     timer.after(400, function () {
                         sprite.follow(_reciever, 0)
@@ -2458,17 +2456,17 @@ sprites.onOverlap(SpriteKind.Interceptor, SpriteKind.Player, function (sprite, o
     sprite.setKind(SpriteKind.DefenderThatTackled)
     animation.stopAnimation(animation.AnimationTypes.All, sprite)
     animation.runImageAnimation(
-        sprite,
-        assets.animation`dive1`,
-        300,
-        false
+    sprite,
+    assets.animation`dive1`,
+    300,
+    false
     )
     music.play(music.createSoundEffect(WaveShape.Noise, 1, 198, 71, 255, 100, SoundExpressionEffect.Warble, InterpolationCurve.Linear), music.PlaybackMode.InBackground)
     animation.runImageAnimation(
-        otherSprite,
-        assets.animation`dive2`,
-        100,
-        false
+    otherSprite,
+    assets.animation`dive2`,
+    100,
+    false
     )
     sprite.setVelocity(0, 0)
     sprites.setDataNumber(sprite, "velocity", 0)
@@ -2487,7 +2485,7 @@ sprites.onOverlap(SpriteKind.Interceptor, SpriteKind.Player, function (sprite, o
         modes.setMode("preSnap", yards_to_x(CurrentScrimYardage))
     })
 })
-function openSettingsMenu() {
+function openSettingsMenu () {
     if (spriteutils.isDestroyed(settingsMenu) || !(settingsMenu)) {
         settingsMenu = miniMenu.createMenuFromArray([miniMenu.createMenuItem("Sound FX", music.volume() !== 0 ? assets.image`on` : assets.image`off`), miniMenu.createMenuItem("Reset Memory", assets.image`resetIcon`)])
         settingsMenu.setDimensions(140, 100)
@@ -2534,7 +2532,7 @@ function openSettingsMenu() {
         })
     }
 }
-function generate_OL() {
+function generate_OL () {
     playerInt = 0
     _qb = sprites.create(assets.image`myImage3`, SpriteKind.Player)
     _qb.setPosition(yards_to_x(CurrentScrimYardage) + 13, 60)
@@ -2569,7 +2567,7 @@ function generate_OL() {
     sprites.setDataNumber(tight_end, "num", playerInt)
     playerInt += 1
 }
-function run_route(directions: number[][], offensive_player: Sprite) {
+function run_route (directions: number[][], offensive_player: Sprite) {
     timer.background(function () {
         for (let value72 of directions) {
             pause(value72[0])
@@ -2601,14 +2599,14 @@ sprites.onOverlap(SpriteKind.PlayerWithPossession, SpriteKind.Endzone, function 
 sprites.onOverlap(SpriteKind.Defense, SpriteKind.Player, function (sprite, otherSprite) {
     if (!(recieverHasPossesion)) {
         music.play(music.createSoundEffect(
-            WaveShape.Noise,
-            368,
-            420,
-            randint(30, 142),
-            0,
-            100,
-            SoundExpressionEffect.Warble,
-            InterpolationCurve.Logarithmic
+        WaveShape.Noise,
+        368,
+        420,
+        randint(30, 142),
+        0,
+        100,
+        SoundExpressionEffect.Warble,
+        InterpolationCurve.Logarithmic
         ), music.PlaybackMode.UntilDone)
         pause(randint(1000, 2000))
     } else {
@@ -2629,10 +2627,10 @@ sprites.onOverlap(SpriteKind.Player, SpriteKind.DefenderTackling, function (spri
                     otherSprite.setKind(SpriteKind.DefenderThatTackled)
                     animation.stopAnimation(animation.AnimationTypes.All, sprite)
                     animation.runImageAnimation(
-                        sprite,
-                        assets.animation`dive1`,
-                        300,
-                        false
+                    sprite,
+                    assets.animation`dive1`,
+                    300,
+                    false
                     )
                     sprite.setVelocity(0, 0)
                     sprites.setDataNumber(sprite, "velocity", 0)
@@ -2661,10 +2659,10 @@ modes.whenModeChanged("quarterEnd", function (offense) {
         if (offense) {
             if (!(_quarter == 2 || _quarter == 4)) {
                 set_splash_to("End of " + [
-                    "1st",
-                    "2nd",
-                    "3rd",
-                    "4th"
+                "1st",
+                "2nd",
+                "3rd",
+                "4th"
                 ][_quarter - 1] + " Quarter", false, CameraX)
                 gameClock = 90
                 _quarter += 1
@@ -2695,115 +2693,15 @@ modes.whenModeChanged("quarterEnd", function (offense) {
                 scroller.setLayerImage(scroller.BackgroundLayer.Layer1, assets.image`background scroll2`)
                 scroller.scrollBackgroundWithSpeed(-10, 0, scroller.BackgroundLayer.Layer0)
                 scroller.scrollBackgroundWithSpeed(-5, 0, scroller.BackgroundLayer.Layer1)
-
                 simulateWeek(opponentTeam, away, AwayScore, HomeScore)
-                start_screen()
+start_screen()
             }
         } else {
             sprites.destroy(gameSplash)
         }
     })
 })
-
-function simulateWeek(opponent: Teams.TeamEnum, isAway: number, awayScore: number, homeScore: number) {
-    // Find the opponent in the standings, change their record
-    const gameOpponentAbbreviation = Teams.getTeamProperty(opponent, Teams.TeamProperty.TeamAbbreviation) as string
-    const currentTeamAbbreviation = Teams.getTeamProperty(CurrentTeam, Teams.TeamProperty.TeamAbbreviation) as string
-    let standings = blockSettings.readStringArray("standings")
-
-    function rollBasedOnRating(rating: number) {
-        // Rating is 0-5
-        let chance = 0.3 + (rating / 5) * 0.4
-        return Math.random() < chance
-    }
-
-    let foundIndex: number = null
-    for (let i = 0; i < standings.length; i++) {
-        if (standings[i].includes(gameOpponentAbbreviation)) {
-            foundIndex = i
-            let opponentStanding = standings[i]
-            let w = opponentStanding.split("/")[1]
-            let l = opponentStanding.split("/")[2]
-            let t = opponentStanding.split("/")[3]
-
-            if (awayScore == homeScore) {
-                standings[i] = gameOpponentAbbreviation + "/" + w + "/" + l + "/" + (parseInt(t) + 1).toString()
-            }
-
-            if (isAway == 0) {
-                // False, the player not away, they're at home.
-                if (awayScore < homeScore) {
-                    // Player won the game as the home team.
-                    standings[i] = gameOpponentAbbreviation + "/" + w + "/" + (parseInt(l) + 1).toString() + "/" + t
-                } else {
-                    // Player lost the game as the home team.
-                    standings[i] = gameOpponentAbbreviation + "/" + (parseInt(w) + 1).toString() + "/" + l + "/" + t
-                }
-            } else {
-                // True, the player is away.
-                if (awayScore < homeScore) {
-                    // Player lost the game as the away team.
-                    standings[i] = gameOpponentAbbreviation + "/" + (parseInt(w) + 1).toString() + "/" + l + "/" + t
-                } else {
-                    // Player won the game as the away team.
-                    standings[i] = gameOpponentAbbreviation + "/" + w + "/" + (parseInt(l) + 1).toString() + "/" + t
-                }
-            }
-        } else if (standings[i].includes(currentTeamAbbreviation)) {
-            let currentStanding = standings[i]
-            let w = currentStanding.split("/")[1]
-            let l = currentStanding.split("/")[2]
-            let t = currentStanding.split("/")[3]
-
-            if (awayScore == homeScore) {
-                standings[i] = currentStanding + "/" + w + "/" + l + "/" + (parseInt(t) + 1).toString()
-            }
-
-            if (isAway == 0) {
-                // False, the player not away, they're at home.
-                if (awayScore < homeScore) {
-                    // Player won the game as the home team.
-                    standings[i] = currentTeamAbbreviation + "/" + (parseInt(w) + 1).toString() + "/" + l + "/" + t
-                } else {
-                    // Player lost the game as the home team.
-                    standings[i] = currentTeamAbbreviation + "/" + w + "/" + (parseInt(l) + 1).toString() + "/" + t
-                }
-            } else {
-                // True, the player is away.
-                if (awayScore < homeScore) {
-                    // Player lost the game as the away team.
-                    standings[i] = currentTeamAbbreviation + "/" + w + "/" + (parseInt(l) + 1).toString() + "/" + t
-                } else {
-                    // Player won the game as the away team.
-                    standings[i] = currentTeamAbbreviation + "/" + (parseInt(w) + 1).toString() + "/" + l + "/" + t
-                }
-            }
-        } else {
-            let opponentStanding = standings[i]
-            let standingAbbreviation = opponentStanding.split("/")[0]
-            let w = opponentStanding.split("/")[1]
-            let l = opponentStanding.split("/")[2]
-            let t = opponentStanding.split("/")[3]
-
-            const rating = Teams.getTeamProperty(opponent, Teams.TeamProperty.Rating) as number
-            const win = rollBasedOnRating(rating)
-
-            if (Math.randomRange(0, 10) == 10) {
-                // Tie the Game
-                standings[i] = standingAbbreviation + "/" + w + "/" + l + "/" + (parseInt(t) + 1).toString()
-            }
-
-            if (win) {
-                standings[i] = standingAbbreviation + "/" + (parseInt(w) + 1).toString() + "/" + l + "/" + t
-            } else {
-                standings[i] = standingAbbreviation + "/" + w + "/" + (parseInt(l) + 1).toString() + "/" + t
-            }
-        }
-    }
-    blockSettings.writeStringArray("standings", standings)
-}
-
-function simulatePossession(sY: number) {
+function simulatePossession (sY: number) {
     possessionEnded = false
     passCompleted = false
     successfulPlays = 0
@@ -2836,7 +2734,7 @@ function simulatePossession(sY: number) {
         }
     }
 }
-function showlocation(team: number) {
+function showlocation (team: number) {
     map = sprites.create(assets.image`usa_map0`, SpriteKind.GUI)
     map.setScale(0, ScaleAnchor.Middle)
     map.setPosition(80, 60)
@@ -2853,16 +2751,13 @@ function showlocation(team: number) {
         map.setScale(map.scale + index13 / 100, ScaleAnchor.Middle)
         pause(8)
     }
-
 }
-function addDramaticPause() {
+function addDramaticPause () {
     console.log("...")
     playLog.push("...")
 }
-let homeStar: Sprite = null
 let startingYardage = 0
 let successfulPlays = 0
-let away = 0
 let safety: Sprite = null
 let center: Sprite = null
 let randomResetInput = 0
@@ -2898,8 +2793,6 @@ let popup: fancyText.TextSprite = null
 let totalSeconds = 0
 let targetIndicator: Sprite = null
 let ballShadow: Sprite = null
-let HomeScore = 0
-let AwayScore = 0
 let mainDefenseSplash = ""
 let cutsceneYardage = 0
 let randomElapse = 0
@@ -2928,14 +2821,14 @@ let running_back: Sprite = null
 let playFormationLines: Sprite = null
 let _endzones: Sprite = null
 let CurrentFirstDownLineYardage = 0
-let map: Sprite = null
-let tabsMenu: miniMenu.MenuSprite = null
 let scheduleGameHomeScore = 0
 let scheduleGameAwayScore = 0
+let map: Sprite = null
 let homeplr: Sprite = null
 let awayplr: Sprite = null
 let homeTeamTextSprite: TextSprite = null
 let awayTeamTextSprite: TextSprite = null
+let tabsMenu: miniMenu.MenuSprite = null
 let recordText: fancyText.TextSprite = null
 let scheduleHomeTeam: Teams.TeamEnum = null
 let awayOrHome = 0
@@ -2969,29 +2862,130 @@ let fumbleOdds = 0
 let interceptionOdds = 0
 let gameClock = 0
 let _quarter = 0
-let enableTabsMenu = false
-let settingsMenu: miniMenu.MenuSprite = null
-let awayTeamEnum2: number = null
-let homeTeamEnum2: number = null
-let value15 = null
-let schedule: string[] = []
-let game_seconds = 0
-let game_minutes = 0
-let opponentTeam: Teams.TeamEnum = null
-let CurrentTeam = 0
-let playResult = ""
-let opponentYardage = 0
-let elapsed = 0
-let newMinutes = 0
-let newSeconds = 0
-let totalSeconds22 = 0
-let totalSeconds2 = 0
-let remainingSeconds = 0
-let scheduleMenu: miniMenu.MenuSprite = null
-let selectedIndex = 0
-let gameSplash: fancyText.TextSprite = null
-let CurrentDownYardage = 0
 let leagueMenu: miniMenu.MenuSprite = null
+let CurrentDownYardage = 0
+let gameSplash: fancyText.TextSprite = null
+let selectedIndex = 0
+let scheduleMenu: miniMenu.MenuSprite = null
+let remainingSeconds = 0
+let totalSeconds2 = 0
+let totalSeconds22 = 0
+let newSeconds = 0
+let newMinutes = 0
+let elapsed = 0
+let opponentYardage = 0
+let playResult = ""
+let CurrentTeam = 0
+let opponentTeam: Teams.TeamEnum = null
+let game_minutes = 0
+let game_seconds = 0
+let schedule: string[] = []
+let value15 = null
+let homeTeamEnum2: number = null
+let awayTeamEnum2: number = null
+let settingsMenu: miniMenu.MenuSprite = null
+let enableTabsMenu = false
+let AwayScore = 0
+let HomeScore = 0
+let away = 0
+let homeStar = null
+function simulateWeek(opponent: Teams.TeamEnum, isAway: number, awayScore: number, homeScore: number) {
+    // Find the opponent in the standings, change their record
+    const gameOpponentAbbreviation = Teams.getTeamProperty(opponent, Teams.TeamProperty.TeamAbbreviation) as string
+    const currentTeamAbbreviation = Teams.getTeamProperty(CurrentTeam, Teams.TeamProperty.TeamAbbreviation) as string
+    let standings = blockSettings.readStringArray("standings")
+
+    function rollBasedOnRating(rating: number) {
+        // Rating is 0-5
+        let chance = 0.3 + (rating / 5) * 0.4
+        return Math.random() < chance
+    }
+
+    let foundIndex: number = null
+    for (let j = 0; j < standings.length; j++) {
+        if (standings[j].includes(gameOpponentAbbreviation)) {
+            foundIndex = j
+            let opponentStanding = standings[j]
+            let b = opponentStanding.split("/")[1]
+            let n = opponentStanding.split("/")[2]
+            let u = opponentStanding.split("/")[3]
+
+            if (awayScore == homeScore) {
+                standings[j] = gameOpponentAbbreviation + "/" + b + "/" + n + "/" + (parseInt(u) + 1).toString()
+            }
+
+            if (isAway == 0) {
+                // False, the player not away, they're at home.
+                if (awayScore < homeScore) {
+                    // Player won the game as the home team.
+                    standings[j] = gameOpponentAbbreviation + "/" + b + "/" + (parseInt(n) + 1).toString() + "/" + u
+                } else {
+                    // Player lost the game as the home team.
+                    standings[j] = gameOpponentAbbreviation + "/" + (parseInt(b) + 1).toString() + "/" + n + "/" + u
+                }
+            } else {
+                // True, the player is away.
+                if (awayScore < homeScore) {
+                    // Player lost the game as the away team.
+                    standings[j] = gameOpponentAbbreviation + "/" + (parseInt(b) + 1).toString() + "/" + n + "/" + u
+                } else {
+                    // Player won the game as the away team.
+                    standings[j] = gameOpponentAbbreviation + "/" + b + "/" + (parseInt(n) + 1).toString() + "/" + u
+                }
+            }
+        } else if (standings[j].includes(currentTeamAbbreviation)) {
+            let currentStanding = standings[j]
+            let c = currentStanding.split("/")[1]
+            let o = currentStanding.split("/")[2]
+            let v = currentStanding.split("/")[3]
+
+            if (awayScore == homeScore) {
+                standings[j] = currentStanding + "/" + c + "/" + o + "/" + (parseInt(v) + 1).toString()
+            }
+
+            if (isAway == 0) {
+                // False, the player not away, they're at home.
+                if (awayScore < homeScore) {
+                    // Player won the game as the home team.
+                    standings[j] = currentTeamAbbreviation + "/" + (parseInt(c) + 1).toString() + "/" + o + "/" + v
+                } else {
+                    // Player lost the game as the home team.
+                    standings[j] = currentTeamAbbreviation + "/" + c + "/" + (parseInt(o) + 1).toString() + "/" + v
+                }
+            } else {
+                // True, the player is away.
+                if (awayScore < homeScore) {
+                    // Player lost the game as the away team.
+                    standings[j] = currentTeamAbbreviation + "/" + c + "/" + (parseInt(o) + 1).toString() + "/" + v
+                } else {
+                    // Player won the game as the away team.
+                    standings[j] = currentTeamAbbreviation + "/" + (parseInt(c) + 1).toString() + "/" + o + "/" + v
+                }
+            }
+        } else {
+            let opponentStanding2 = standings[j]
+            let standingAbbreviation = opponentStanding2.split("/")[0]
+            let d = opponentStanding2.split("/")[1]
+            let p = opponentStanding2.split("/")[2]
+            let e = opponentStanding2.split("/")[3]
+
+            const rating = Teams.getTeamProperty(opponent, Teams.TeamProperty.Rating) as number
+            const win = rollBasedOnRating(rating)
+
+            if (Math.randomRange(0, 10) == 10) {
+                // Tie the Game
+                standings[j] = standingAbbreviation + "/" + d + "/" + p + "/" + (parseInt(e) + 1).toString()
+            }
+
+            if (win) {
+                standings[j] = standingAbbreviation + "/" + (parseInt(d) + 1).toString() + "/" + p + "/" + e
+            } else {
+                standings[j] = standingAbbreviation + "/" + d + "/" + (parseInt(p) + 1).toString() + "/" + e
+            }
+        }
+    }
+    blockSettings.writeStringArray("standings", standings)
+}
 enableTabsMenu = true
 _quarter = 1
 gameClock = 90
@@ -3175,21 +3169,21 @@ game.onUpdate(function () {
     lerpCameraX(CameraX)
 })
 game.onUpdate(function () {
-
+	
 })
 game.onUpdate(function () {
-
+	
 })
 game.onUpdateInterval(1, function () {
     set_offensive_colors()
     set_defensive_colors()
 })
 game.onUpdateInterval(1, function () {
-
+	
 })
 forever(function () {
-
+	
 })
 forever(function () {
-
+	
 })
