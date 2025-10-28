@@ -466,7 +466,7 @@ function start_screen () {
             } else if (championships[selectedIndex] >= 4) {
                 welcomeDialog = "This organization demands success, we expect your best coach, no less..."
             }
-            welcomeToTeamText = fancyText.create("" + "" + "" + "" + "" + "Welcome to " + Teams.getTeamProperty(selectedIndex, Teams.TeamProperty.TeamLocation) as string + " coach. " + welcomeDialog)
+            welcomeToTeamText = fancyText.create("" + "" + "" + "" + "" + "" + "Welcome to " + Teams.getTeamProperty(selectedIndex, Teams.TeamProperty.TeamLocation) as string + " coach. " + welcomeDialog)
             fancyText.setMaxWidth(welcomeToTeamText, 140)
             welcomeToTeamText.setPosition(85, 40)
             trophyShelf = sprites.create(assets.image`bookshelf`, SpriteKind.UI)
@@ -1454,11 +1454,11 @@ function openLeagueMenu () {
         }
 
         for (const standing of blockSettings.readStringArray("standings")) {
-            const name = standing.split("/")[0]
-            const w = standing.split("/")[1]
-            const l = standing.split("/")[2]
+            const name2 = standing.split("/")[0]
+            const a = standing.split("/")[1]
+            const m = standing.split("/")[2]
 
-            menuItems.push(miniMenu.createMenuItem(name + " - W/L: " + w + "-" + l))
+            menuItems.push(miniMenu.createMenuItem(name2 + " - W/L: " + a + "-" + m))
         }
         
         let standingsMenu = miniMenu.createMenuFromArray(menuItems)
@@ -1495,17 +1495,12 @@ function openLeagueMenu () {
             }
         })
     }
-
-    function openFAMenu() {
+function openFAMenu() {
         // Resets the league menu options and title and houses the code for the free agents menu
     
     }
-
-    if (spriteutils.isDestroyed(leagueMenu) || !(leagueMenu)) {
-        leagueMenu = miniMenu.createMenuFromArray([
-            miniMenu.createMenuItem("Standings",assets.image`standingsIcon`),
-            miniMenu.createMenuItem("Free Agents",assets.image`faIcon`)
-            ])
+if (spriteutils.isDestroyed(leagueMenu) || !(leagueMenu)) {
+        leagueMenu = miniMenu.createMenuFromArray([miniMenu.createMenuItem("Standings", assets.image`standingsIcon`), miniMenu.createMenuItem("Free Agents", assets.image`faIcon`)])
         leagueMenu.setDimensions(140, 100)
         leagueMenu.setFrame(img`
             1 1 1 1 1 1 1 1 1 1 1 1 
@@ -1526,12 +1521,11 @@ function openLeagueMenu () {
         leagueMenu.setMenuStyleProperty(miniMenu.MenuStyleProperty.BackgroundColor, 13)
         leagueMenu.setTitle("LEAGUE")
         leagueMenu.setPosition(80, 60)
-        leagueMenu.onButtonPressed(controller.A, function(selection: string, selectedIndex: number) {
-            if (selection=="Standings") {
+        leagueMenu.onButtonPressed(controller.A, function (selection, selectedIndex) {
+            if (selection == "Standings") {
                 enableTabsMenu = false
                 openStandingsMenu()
-                
-            } else if (selection=="Free Agents") {
+            } else if (selection == "Free Agents") {
                 enableTabsMenu = false
                 openFAMenu()
             }
@@ -2661,6 +2655,8 @@ modes.whenModeChanged("quarterEnd", function (offense) {
                 scroller.setLayerImage(scroller.BackgroundLayer.Layer1, assets.image`background scroll2`)
                 scroller.scrollBackgroundWithSpeed(-10, 0, scroller.BackgroundLayer.Layer0)
                 scroller.scrollBackgroundWithSpeed(-5, 0, scroller.BackgroundLayer.Layer1)
+                
+                simulateWeek(opponentTeam, away, AwayScore, HomeScore)
                 start_screen()
             }
         } else {
@@ -2668,6 +2664,62 @@ modes.whenModeChanged("quarterEnd", function (offense) {
         }
     })
 })
+
+function simulateWeek(opponent: Teams.TeamEnum, isAway: number, awayScore: number, homeScore: number) {
+    // Find the opponent in the standings, change their record
+    const gameOpponentAbbreviation = Teams.getTeamProperty(opponent, Teams.TeamProperty.TeamAbbreviation) as string
+    const standings = blockSettings.readStringArray("standings")
+    
+    function rollBasedOnRating(rating: number) {
+        // Rating is 0-5
+        let chance = 0.3 + (rating / 5) * 0.4
+        return Math.random() < chance
+    }
+
+    let foundIndex: number = null
+    for (let i = 0; i < standings.length; i++) {
+        if (standings[i].includes(gameOpponentAbbreviation)) {
+            foundIndex = i
+            let opponentStanding = standings[i]
+            let w = opponentStanding.split("/")[1]
+            let l = opponentStanding.split("/")[2]
+
+            if (isAway == 0) {
+                // False, the player not away, they're at home.
+                if (awayScore < homeScore) {
+                    // Player won the game as the home team.
+                    standings[i] = gameOpponentAbbreviation + "/" + w + "/" + (parseInt(l) + 1).toString()
+                } else {
+                    // Player lost the game as the home team.
+                    standings[i] = gameOpponentAbbreviation + "/" + (parseInt(w) + 1).toString() + "/" + l
+                }
+            } else {
+                // True, the player is away.
+                if (awayScore < homeScore) {
+                    // Player lost the game as the away team.
+                    standings[i] = gameOpponentAbbreviation + "/" + (parseInt(w) + 1).toString() + "/" + l
+                } else {
+                    // Player won the game as the away team.
+                    standings[i] = gameOpponentAbbreviation + "/" + w + "/" + (parseInt(l) + 1).toString()
+                }
+            }
+        } else {
+            const rating = Teams.getTeamProperty(opponent, Teams.TeamProperty.Rating) as number
+            const win = rollBasedOnRating(rating)
+
+            let opponentStanding = standings[i]
+            let w = opponentStanding.split("/")[1]
+            let l = opponentStanding.split("/")[2]
+
+            if (win) {
+                standings[i] = gameOpponentAbbreviation + "/" + (parseInt(w) + 1).toString() + "/" + l
+            } else {
+                standings[i] = gameOpponentAbbreviation + "/" + w + "/" + (parseInt(l) + 1).toString()
+            }
+        }
+    }  
+}
+
 function simulatePossession (sY: number) {
     possessionEnded = false
     passCompleted = false
@@ -2706,16 +2758,16 @@ function showlocation (team: number) {
     map.setScale(0, ScaleAnchor.Middle)
     map.setPosition(80, 60)
     map.setFlag(SpriteFlag.RelativeToCamera, true)
-    for (let index = 0; index <= 20; index++) {
-        map.setScale(index / 10, ScaleAnchor.Middle)
+    for (let index11 = 0; index11 <= 20; index11++) {
+        map.setScale(index11 / 10, ScaleAnchor.Middle)
         pause(2)
     }
-    for (let index = 0; index <= 20; index++) {
-        map.setScale(map.scale - index / 150, ScaleAnchor.Middle)
+    for (let index12 = 0; index12 <= 20; index12++) {
+        map.setScale(map.scale - index12 / 150, ScaleAnchor.Middle)
         pause(4)
     }
-    for (let index = 0; index <= 10; index++) {
-        map.setScale(map.scale + index / 100, ScaleAnchor.Middle)
+    for (let index13 = 0; index13 <= 10; index13++) {
+        map.setScale(map.scale + index13 / 100, ScaleAnchor.Middle)
         pause(8)
     }
     homeStar = sprites.create(img`
@@ -2734,7 +2786,6 @@ function addDramaticPause () {
     console.log("...")
     playLog.push("...")
 }
-let enableTabsMenu = true
 let homeStar: Sprite = null
 let startingYardage = 0
 let successfulPlays = 0
@@ -2772,7 +2823,6 @@ let dx = 0
 let img2: Image = null
 let popup: fancyText.TextSprite = null
 let totalSeconds = 0
-let leagueMenu: miniMenu.MenuSprite = null
 let targetIndicator: Sprite = null
 let ballShadow: Sprite = null
 let HomeScore = 0
@@ -2793,7 +2843,6 @@ let playerInt = 0
 let CurrentScrimYardage = 0
 let _ball: Sprite = null
 let ContextText: fancyText.TextSprite = null
-let CurrentDownYardage = 0
 let CurrentDown = 0
 let Downs: fancyText.TextSprite = null
 let enableRecieverMovement = false
@@ -2847,26 +2896,30 @@ let fumbleOdds = 0
 let interceptionOdds = 0
 let gameClock = 0
 let _quarter = 0
-let gameSplash: fancyText.TextSprite = null
-let selectedIndex = 0
-let scheduleMenu: miniMenu.MenuSprite = null
-let remainingSeconds = 0
-let totalSeconds2 = 0
-let totalSeconds22 = 0
-let newSeconds = 0
-let newMinutes = 0
-let elapsed = 0
-let opponentYardage = 0
-let playResult = ""
-let CurrentTeam = 0
-let opponentTeam: Teams.TeamEnum = null
-let game_minutes = 0
-let game_seconds = 0
-let schedule: string[] = []
-let value15 = null
-let homeTeamEnum2: number = null
-let awayTeamEnum2: number = null
+let enableTabsMenu = false
 let settingsMenu: miniMenu.MenuSprite = null
+let awayTeamEnum2: number = null
+let homeTeamEnum2: number = null
+let value15 = null
+let schedule: string[] = []
+let game_seconds = 0
+let game_minutes = 0
+let opponentTeam: Teams.TeamEnum = null
+let CurrentTeam = 0
+let playResult = ""
+let opponentYardage = 0
+let elapsed = 0
+let newMinutes = 0
+let newSeconds = 0
+let totalSeconds22 = 0
+let totalSeconds2 = 0
+let remainingSeconds = 0
+let scheduleMenu: miniMenu.MenuSprite = null
+let selectedIndex = 0
+let gameSplash: fancyText.TextSprite = null
+let CurrentDownYardage = 0
+let leagueMenu: miniMenu.MenuSprite = null
+enableTabsMenu = true
 _quarter = 1
 gameClock = 90
 opponentYardage = 25

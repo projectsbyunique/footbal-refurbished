@@ -2407,5 +2407,12 @@ e e e e c 9 9 1 1 7 9 c . . . .
         return null;
     })
 
+    helpers._registerFactory("json", function(name: string) {
+        switch(helpers.stringTrim(name)) {
+
+        }
+        return null;
+    })
+
 }
 // Auto-generated code. Do not edit.
