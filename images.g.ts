@@ -2602,13 +2602,8 @@ e e e e c 9 9 1 1 7 9 c . . . .
         switch(helpers.stringTrim(name)) {
             case "song1":
             case "mySong":return hex`00780004080200`;
-        }
-        return null;
-    })
-
-    helpers._registerFactory("json", function(name: string) {
-        switch(helpers.stringTrim(name)) {
-
+            case "song2":
+            case "mySong0":return hex`0064000408020103001c0001dc00690000045e0100040000000000000000000005000001000003300000000800011d08000c0001200c001000012210001800012420002800011d280030000120300034000122380040000129`;
         }
         return null;
     })
